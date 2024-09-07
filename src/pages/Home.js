@@ -4,7 +4,7 @@ import Banner from "../components/Banner";
 export default function Home() {
   return (
     <>
-      <About />
+      <About tag="HomePage" />
       <Banner />
     </>
   );
