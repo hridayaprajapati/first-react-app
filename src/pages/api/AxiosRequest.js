@@ -52,7 +52,7 @@ export const deleteData = async (params) => {
   const response = await axios.request(config);
   if (response.status === 200) {
     // 200 == ok
-    console.log("AxiosRequest.deleteData():", response.status);
+    console.log("AxiosRequest.deleteData():", params, response.status);
   }
 };
 

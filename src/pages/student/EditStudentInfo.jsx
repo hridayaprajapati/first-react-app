@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { getData, postData, updateData } from "../api/AxiosRequest";
+import { getData, updateData } from "../api/AxiosRequest";
 
-const EditStudent = () => {
-  const [singleStudent, setSingleStudent] = useState({
+const EditStudentInfo = () => {
+  const [formData, setFormData] = useState({
     studentName: "",
     studentRollNumber: "",
     studentClass: "",
@@ -12,16 +12,14 @@ const EditStudent = () => {
 
   const { id } = useParams();
 
-  const getSingleStudent = async () => {
+  const getStudentInfo = async () => {
     const data = await getData(`students/${id}`);
-    setSingleStudent(data.attributes);
+    setFormData(data.attributes);
   };
 
   useEffect(() => {
-    getSingleStudent();
+    getStudentInfo();
   }, []);
-
-  const [formData, setFormData] = useState();
 
   const handleChange = (e) => {
     setFormData({
@@ -34,7 +32,7 @@ const EditStudent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const status = await updateData("students", formData);
+    const status = await updateData(`students/${id}`, formData);
     if (status) {
       navigate("/students");
     }
@@ -56,7 +54,7 @@ const EditStudent = () => {
                   name="studentName"
                   id="name"
                   className="form-control"
-                  value={singleStudent.studentName}
+                  value={formData.studentName}
                   onChange={handleChange}
                 />
               </div>
@@ -69,7 +67,7 @@ const EditStudent = () => {
                   name="studentRollNumber"
                   id="roll"
                   className="form-control"
-                  value={singleStudent.studentRollNumber}
+                  value={formData.studentRollNumber}
                   onChange={handleChange}
                 />
               </div>
@@ -81,12 +79,12 @@ const EditStudent = () => {
                   name="studentClass"
                   id="class"
                   className="form-control"
-                  value={singleStudent.studentClass}
+                  value={formData.studentClass}
                   onChange={handleChange}
                 >
                   <option value="">Choose here</option>
                   <option value="BCA">BCA</option>
-                  <option value="Bsc. CSIT">Bsc. CSIT</option>
+                  <option value="CSIT">BSc. CSIT</option>
                   <option value="BBA">BBA</option>
                   <option value="BBS">BBS</option>
                 </select>
@@ -102,4 +100,4 @@ const EditStudent = () => {
   );
 };
 
-export default EditStudent;
+export default EditStudentInfo;

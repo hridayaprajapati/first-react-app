@@ -19,6 +19,11 @@ export default function ListStudent() {
     getListStudent();
   }, []);
 
+  const handleDelete = async (id) => {
+    await deleteData(`students/${id}`);
+    getListStudent();
+  };
+
   return (
     <>
       <div className="container pt-4">
@@ -43,6 +48,7 @@ export default function ListStudent() {
                   <th scope="col">First Name</th>
                   <th scope="col">Roll Number</th>
                   <th scope="col">Class</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
@@ -68,7 +74,7 @@ export default function ListStudent() {
                         Edit
                       </Link>
                       <Link
-                        onClick={() => deleteData(`students/${item.id}`)}
+                        onClick={() => handleDelete(item.id)}
                         className="btn btn-danger btn-sm d-flex align-items-center gap-2"
                       >
                         <MdDelete />

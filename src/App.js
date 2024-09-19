@@ -14,7 +14,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ListStudent from "./pages/student/ListStudent";
 import SingleStudent from "./pages/student/SingleStudent";
 import CreateStudent from "./pages/student/CreateStudent";
-import EditStudent from "./pages/student/EditStudent";
+import EditStudentInfo from "./pages/student/EditStudentInfo";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/students" element={<ListStudent />} />
           <Route path="/students/:id" element={<SingleStudent />} />
-          <Route path="/students/:id/edit" element={<EditStudent />} />
+          <Route path="/students/:id/edit" element={<EditStudentInfo />} />
           <Route path="/create-student" element={<CreateStudent />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>

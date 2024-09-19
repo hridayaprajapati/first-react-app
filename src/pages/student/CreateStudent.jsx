@@ -73,7 +73,7 @@ export default function CreateStudent() {
                 >
                   <option value="">Choose here</option>
                   <option value="BCA">BCA</option>
-                  <option value="CSIT">Bsc. CSIT</option>
+                  <option value="CSIT">BSc. CSIT</option>
                   <option value="BBA">BBA</option>
                   <option value="BBS">BBS</option>
                 </select>
