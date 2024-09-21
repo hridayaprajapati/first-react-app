@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { getData, updateData } from "../api/AxiosRequest";
@@ -11,14 +11,14 @@ const EditTeacherInfo = () => {
 
   const { id } = useParams();
 
-  const getTeacherInfo = async () => {
+  const getTeacherInfo = useCallback(async () => {
     const data = await getData(`teachers/${id}`);
     setFormData(data);
-  };
+  }, [id]);
 
   useEffect(() => {
     getTeacherInfo();
-  }, []);
+  }, [getTeacherInfo]);
 
   const handleChange = (e) => {
     setFormData({

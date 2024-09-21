@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { getData, updateData } from "../api/AxiosRequest";
@@ -12,14 +12,14 @@ const EditStudentInfo = () => {
 
   const { id } = useParams();
 
-  const getStudentInfo = async () => {
+  const getStudentInfo = useCallback(async () => {
     const data = await getData(`students/${id}`);
     setFormData(data);
-  };
+  }, [id]);
 
   useEffect(() => {
     getStudentInfo();
-  }, []);
+  }, [getStudentInfo]);
 
   const handleChange = (e) => {
     setFormData({

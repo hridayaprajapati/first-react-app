@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { getData } from "../api/AxiosRequest";
 import { useParams } from "react-router-dom";
@@ -12,17 +12,17 @@ const SingleStudent = () => {
 
   const { id } = useParams();
 
-  const getSingleStudent = async () => {
+  const getSingleStudent = useCallback(async () => {
     const data = await getData(`students/${id}`);
     setSingleStudent({
       ...data,
       id: data.id,
     });
-  };
+  }, [id]);
 
   useEffect(() => {
     getSingleStudent();
-  }, []);
+  }, [getSingleStudent]);
 
   return (
     <>
