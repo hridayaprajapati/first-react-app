@@ -28,8 +28,8 @@ export const postData = async (params, formData) => {
 
   try {
     const response = await axios.request(config);
-    if (response.status === 200) {
-      // 200 == ok
+    if (response.status === 200 || response.status === 201) {
+      // 200 == ok || 201 == created
       console.log("AxiosRequest.postData():", response.status);
       return true;
     }
