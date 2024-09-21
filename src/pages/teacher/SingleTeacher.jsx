@@ -15,7 +15,7 @@ const SingleTeacher = () => {
   const getSingleTeacher = async () => {
     const data = await getData(`teachers/${id}`);
     setSingleTeacher({
-      ...data.attributes,
+      ...data,
       id: data.id,
     });
   };

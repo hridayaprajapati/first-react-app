@@ -14,7 +14,7 @@ const EditStudentInfo = () => {
 
   const getStudentInfo = async () => {
     const data = await getData(`students/${id}`);
-    setFormData(data.attributes);
+    setFormData(data);
   };
 
   useEffect(() => {

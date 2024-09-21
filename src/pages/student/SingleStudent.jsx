@@ -15,7 +15,7 @@ const SingleStudent = () => {
   const getSingleStudent = async () => {
     const data = await getData(`students/${id}`);
     setSingleStudent({
-      ...data.attributes,
+      ...data,
       id: data.id,
     });
   };

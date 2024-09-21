@@ -19,8 +19,8 @@ const ListTeacher = () => {
     getListTeacher();
   }, []);
 
-  const handleDelete = async (id) => {
-    await deleteData(`teachers/${id}`);
+  const handleDelete = async (documentId) => {
+    await deleteData(`teachers/${documentId}`);
     getListTeacher();
   };
   return (
@@ -51,25 +51,25 @@ const ListTeacher = () => {
                 {listTeacher.map((item, idx) => (
                   <tr key={idx}>
                     <th scope="row">{item.id}</th>
-                    <td>{item.attributes.teacherName}</td>
-                    <td>{item.attributes.teacherEmail}</td>
+                    <td>{item.teacherName}</td>
+                    <td>{item.teacherEmail}</td>
                     <td className="d-flex gap-2">
                       <Link
-                        to={`/teachers/${item.id}`}
+                        to={`/teachers/${item.documentId}`}
                         className="btn btn-success btn-sm d-flex align-items-center gap-2"
                       >
                         <MdOutlineRemoveRedEye />
                         View
                       </Link>
                       <Link
-                        to={`/teachers/${item.id}/edit`}
+                        to={`/teachers/${item.documentId}/edit`}
                         className="btn btn-primary btn-sm d-flex align-items-center gap-2"
                       >
                         <CiEdit />
                         Edit
                       </Link>
                       <Link
-                        onClick={() => handleDelete(item.id)}
+                        onClick={() => handleDelete(item.documentId)}
                         className="btn btn-danger btn-sm d-flex align-items-center gap-2"
                       >
                         <MdDelete />

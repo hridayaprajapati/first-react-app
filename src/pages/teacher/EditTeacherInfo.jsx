@@ -13,7 +13,7 @@ const EditTeacherInfo = () => {
 
   const getTeacherInfo = async () => {
     const data = await getData(`teachers/${id}`);
-    setFormData(data.attributes);
+    setFormData(data);
   };
 
   useEffect(() => {
