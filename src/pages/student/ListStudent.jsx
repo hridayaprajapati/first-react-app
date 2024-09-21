@@ -7,7 +7,7 @@ import { FaPlus } from "react-icons/fa";
 
 import { deleteData, getData } from "../api/AxiosRequest";
 
-export default function ListStudent() {
+const ListStudent = () => {
   const [listStudent, setListStudent] = useState([]);
 
   const getListStudent = async () => {
@@ -90,4 +90,6 @@ export default function ListStudent() {
       </div>
     </>
   );
-}
+};
+
+export default ListStudent;

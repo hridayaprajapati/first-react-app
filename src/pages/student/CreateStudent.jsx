@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { postData } from "../api/AxiosRequest";
 
-export default function CreateStudent() {
+const CreateStudent = () => {
   const [formData, setFormData] = useState({
     studentName: "",
     studentRollNumber: "",
@@ -87,4 +87,6 @@ export default function CreateStudent() {
       </div>
     </>
   );
-}
+};
+
+export default CreateStudent;

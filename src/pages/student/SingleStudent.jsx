@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getData } from "../api/AxiosRequest";
 import { useParams } from "react-router-dom";
 
-export default function SingleStudent() {
+const SingleStudent = () => {
   const [singleStudent, setSingleStudent] = useState({
     studentName: "",
     studentRollNumber: "",
@@ -39,4 +39,6 @@ export default function SingleStudent() {
       </div>
     </>
   );
-}
+};
+
+export default SingleStudent;
