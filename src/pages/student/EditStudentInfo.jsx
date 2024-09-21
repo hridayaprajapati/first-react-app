@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { getData, updateData } from "../api/AxiosRequest";
+import { getData, updateStudentData } from "../api/AxiosRequest";
 
 const EditStudentInfo = () => {
   const [formData, setFormData] = useState({
@@ -32,7 +32,7 @@ const EditStudentInfo = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const status = await updateData(`students/${id}`, formData);
+    const status = await updateStudentData(`students/${id}`, formData);
     if (status) {
       navigate("/students");
     }

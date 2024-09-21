@@ -44,7 +44,7 @@ const ListStudent = () => {
             <table className="table">
               <thead className="thead-dark">
                 <tr>
-                  <th scope="col">#</th>
+                  <th scope="col">SN</th>
                   <th scope="col">Name</th>
                   <th scope="col">Roll Number</th>
                   <th scope="col">Course</th>

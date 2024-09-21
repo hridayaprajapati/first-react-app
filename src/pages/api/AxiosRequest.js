@@ -56,7 +56,7 @@ export const deleteData = async (params) => {
   }
 };
 
-export const updateData = async (params, formData) => {
+export const updateStudentData = async (params, formData) => {
   let data = JSON.stringify({
     data: {
       studentName: formData.studentName,
@@ -79,11 +79,43 @@ export const updateData = async (params, formData) => {
     const response = await axios.request(config);
     if (response.status === 200) {
       // 200 == ok
-      console.log("AxiosRequest.updateData():", response.status);
+      console.log("AxiosRequest.updateStudentData():", response.status);
       return true;
     }
   } catch (error) {
-    console.error("AxiosRequest.updateData():", error);
+    console.error("AxiosRequest.updateStudentData():", error);
+    return false;
+  }
+};
+
+export const updateTeacherData = async (params, formData) => {
+  let data = JSON.stringify({
+    data: {
+      teacherName: formData.teacherName,
+      teacherEmail: formData.teacherEmail,
+      teacherPassword: formData.teacherPassword,
+    },
+  });
+
+  let config = {
+    method: "put",
+    maxBodyLength: Infinity,
+    url: `${BASE_URL}/api/${params}`,
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `${AUTH_TOKEN}`,
+    },
+    data: data,
+  };
+  try {
+    const response = await axios.request(config);
+    if (response.status === 200) {
+      // 200 == ok
+      console.log("AxiosRequest.updateStudentData():", response.status);
+      return true;
+    }
+  } catch (error) {
+    console.error("AxiosRequest.updateStudentData():", error);
     return false;
   }
 };
