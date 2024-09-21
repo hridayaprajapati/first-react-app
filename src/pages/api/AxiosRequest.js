@@ -58,7 +58,11 @@ export const deleteData = async (params) => {
 
 export const updateData = async (params, formData) => {
   let data = JSON.stringify({
-    data: formData,
+    data: {
+      studentName: formData.studentName,
+      studentRollNumber: formData.studentRollNumber,
+      studentClass: formData.studentClass,
+    },
   });
 
   let config = {
