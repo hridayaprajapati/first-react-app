@@ -1,73 +1,68 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import { deleteData, getData } from "../api/AxiosRequest";
+
 import { MdOutlineRemoveRedEye, MdDelete } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa";
 
-import { deleteData, getData } from "../api/AxiosRequest";
+const ListTeacher = () => {
+  const [listTeacher, setListTeacher] = useState([]);
 
-export default function ListStudent() {
-  const [listStudent, setListStudent] = useState([]);
-
-  const getListStudent = async () => {
-    const data = await getData("students");
-    setListStudent(data);
+  const getListTeacher = async () => {
+    const data = await getData("teachers");
+    setListTeacher(data);
   };
 
   useEffect(() => {
-    getListStudent();
+    getListTeacher();
   }, []);
 
   const handleDelete = async (id) => {
-    await deleteData(`students/${id}`);
-    getListStudent();
+    await deleteData(`teachers/${id}`);
+    getListTeacher();
   };
-
   return (
     <>
-      <div className="container pt-4">
+      <div className="container mt-4">
         <div className="row">
           <div className="col-12">
             <div className="d-flex justify-content-between">
-              <h1>List Student</h1>
-
+              <h1>List Teacher</h1>
               <Link
                 className="d-flex align-items-center btn btn-info"
-                to="/create-student"
+                to="/create-teacher"
               >
                 <FaPlus />
-                New Student
+                New Teacher
               </Link>
             </div>
-
             <table className="table">
               <thead className="thead-dark">
                 <tr>
-                  <th scope="col">#</th>
+                  <th scope="col">ID</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Roll Number</th>
-                  <th scope="col">Course</th>
+                  <th scope="col">Email</th>
                   <th scope="col">Operations</th>
                 </tr>
               </thead>
               <tbody>
-                {listStudent.map((item, idx) => (
+                {listTeacher.map((item, idx) => (
                   <tr key={idx}>
                     <th scope="row">{item.id}</th>
-                    <td>{item.attributes.studentName}</td>
-                    <td>{item.attributes.studentRollNumber}</td>
-                    <td>{item.attributes.studentClass}</td>
+                    <td>{item.attributes.teacherName}</td>
+                    <td>{item.attributes.teacherEmail}</td>
                     <td className="d-flex gap-2">
                       <Link
-                        to={`/students/${item.id}`}
+                        to={`/teachers/${item.id}`}
                         className="btn btn-success btn-sm d-flex align-items-center gap-2"
                       >
                         <MdOutlineRemoveRedEye />
                         View
                       </Link>
                       <Link
-                        to={`/students/${item.id}/edit`}
+                        to={`/teachers/${item.id}/edit`}
                         className="btn btn-primary btn-sm d-flex align-items-center gap-2"
                       >
                         <CiEdit />
@@ -90,4 +85,6 @@ export default function ListStudent() {
       </div>
     </>
   );
-}
+};
+
+export default ListTeacher;

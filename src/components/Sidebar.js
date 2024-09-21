@@ -8,6 +8,7 @@ function Sidebar() {
         <Link to="/about">About</Link>
         <Link to="/contact">Contact</Link>
         <Link to="/students">Students</Link>
+        <Link to="/teachers">Teachers</Link>
       </nav>
     </>
   );

@@ -1,14 +1,24 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-import { postData } from "../api/AxiosRequest";
+import { getData, updateData } from "../api/AxiosRequest";
 
-export default function CreateStudent() {
+const EditTeacherInfo = () => {
   const [formData, setFormData] = useState({
-    studentName: "",
-    studentRollNumber: "",
-    studentClass: "",
+    teacherName: "",
+    teacherEmail: "",
   });
+
+  const { id } = useParams();
+
+  const getTeacherInfo = async () => {
+    const data = await getData(`teachers/${id}`);
+    setFormData(data.attributes);
+  };
+
+  useEffect(() => {
+    getTeacherInfo();
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -21,16 +31,16 @@ export default function CreateStudent() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const status = await postData("students", formData);
+    const status = await updateData(`teachers/${id}`, formData);
     if (status) {
-      navigate("/students");
+      navigate("/teachers");
     }
   };
 
   return (
     <>
       <div className="container">
-        <h1>Create Student</h1>
+        <h1>Edit Teacher</h1>
         <div className="row">
           <div className="col-lg-6">
             <form onSubmit={handleSubmit}>
@@ -40,43 +50,38 @@ export default function CreateStudent() {
                 </label>
                 <input
                   type="text"
-                  name="studentName"
+                  name="teacherName"
                   id="name"
                   className="form-control"
-                  value={formData.studentName}
+                  value={formData.teacherName}
                   onChange={handleChange}
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="roll" className="form-label">
-                  Roll Number
+                <label htmlFor="email" className="form-label">
+                  Email
                 </label>
                 <input
-                  type="number"
-                  name="studentRollNumber"
-                  id="roll"
+                  type="email"
+                  name="teacherEmail"
+                  id="email"
                   className="form-control"
-                  value={formData.studentRollNumber}
+                  value={formData.teacherEmail}
                   onChange={handleChange}
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="class" className="form-label">
-                  Course
+                <label htmlFor="password" className="form-label">
+                  Password
                 </label>
-                <select
-                  name="studentClass"
-                  id="class"
+                <input
+                  type="password"
+                  name="teacherPassword"
+                  id="password"
                   className="form-control"
-                  value={formData.studentClass}
+                  value={formData.teacherPassword}
                   onChange={handleChange}
-                >
-                  <option value="">Choose here</option>
-                  <option value="BCA">BCA</option>
-                  <option value="CSIT">BSc. CSIT</option>
-                  <option value="BBA">BBA</option>
-                  <option value="BBS">BBS</option>
-                </select>
+                />
               </div>
               <button type="submit" className="btn btn-primary">
                 Submit
@@ -87,4 +92,6 @@ export default function CreateStudent() {
       </div>
     </>
   );
-}
+};
+
+export default EditTeacherInfo;

@@ -14,7 +14,10 @@ export default function SingleStudent() {
 
   const getSingleStudent = async () => {
     const data = await getData(`students/${id}`);
-    setSingleStudent(data.attributes);
+    setSingleStudent({
+      ...data.attributes,
+      id: data.id,
+    });
   };
 
   useEffect(() => {
@@ -23,13 +26,14 @@ export default function SingleStudent() {
 
   return (
     <>
-      <div className="container">
+      <div className="container pt-4">
         <div className="row">
-          <div className="col-12">
+          <div className="col-12 d-flex flex-column gap-2">
             <h1>Single Student</h1>
-            <p>{singleStudent.studentName}</p>
-            <p>{singleStudent.studentRollNumber}</p>
-            <p>{singleStudent.studentClass}</p>
+            <p>Student ID: {singleStudent.id}</p>
+            <p>Student Name: {singleStudent.studentName}</p>
+            <p>Student Roll Number: {singleStudent.studentRollNumber}</p>
+            <p>Student Course: {singleStudent.studentClass}</p>
           </div>
         </div>
       </div>
